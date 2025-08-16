@@ -115,6 +115,8 @@ To run the app locally:
 hpm --help
 
 hpm --帮助
+
+hpm eliminar [pkg-name]
 ```
 
 To build a `.zst` package for Arch:
@@ -127,4 +129,5 @@ To build a `.zst` package for Arch:
 ## 📄 License
 
 MIT © Helwan Linux Team
+
 
