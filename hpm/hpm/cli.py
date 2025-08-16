@@ -35,7 +35,7 @@ def print_custom_help(lang: str):
     translate = get_translation(lang)
     console.print(f"[bold green]{translate('description')}[/bold green]")
     console.print("[dim]Version: 1.0.0[/dim]")
-    console.print(f"\n[bold]{translate('usage')}:[/b] python main.py [COMMAND] [OPTIONS] [ARGS]...")
+    console.print(f"\n[bold]{translate('usage')}:[/b] hpm [COMMAND] [OPTIONS] [ARGS]...")
 
     table = Table(
         title=translate("commands_title"),
