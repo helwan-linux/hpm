@@ -117,6 +117,8 @@ hpm --help
 hpm --帮助
 
 hpm eliminar [pkg-name]
+
+hpm سجل
 ```
 
 To build a `.zst` package for Arch:
@@ -129,5 +131,6 @@ To build a `.zst` package for Arch:
 ## 📄 License
 
 MIT © Helwan Linux Team
+
 
 
