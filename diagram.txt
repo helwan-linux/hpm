@@ -43,7 +43,7 @@ https://github.com/helwan-linux/hpm
 │       ├── 📄 pacman.py
 │       └── 📄 safety.py
 ├── 📄 main.py
-├── 📄 pyproject.toml
+├── 📄 setup.py
 ├── 📄 requirements.txt
 └── 📁 tests
     ├── 📄 __init__.py
