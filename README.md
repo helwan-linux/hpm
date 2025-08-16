@@ -7,6 +7,11 @@
 
 ---
 
+##  Demo Video
+
+[![Watch the demo](https://www.youtube.com/watch?v=Gn3lZLoF84s)
+
+
 ## 🚀 Features
 
 * 📦 Simple commands: `install`, `remove`, `upgrade`, etc.
@@ -129,6 +134,7 @@ To build a `.zst` package for Arch:
 ## 📄 License
 
 MIT © Helwan Linux Team
+
 
 
 
