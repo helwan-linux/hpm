@@ -9,7 +9,9 @@
 
 ##  Demo Video
 
-[![Watch the demo](https://www.youtube.com/watch?v=Gn3lZLoF84s)
+[![Watch the demo](https://img.youtube.com/vi/Gn3lZLoF84s/0.jpg)](https://www.youtube.com/watch?v=Gn3lZLoF84s)
+
+
 
 
 ## 🚀 Features
@@ -134,6 +136,7 @@ To build a `.zst` package for Arch:
 ## 📄 License
 
 MIT © Helwan Linux Team
+
 
 
 
