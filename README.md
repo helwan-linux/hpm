@@ -25,9 +25,7 @@
 ### From Source
 
 ```bash
-git clone https://github.com/helwan-linux/helwan-pkg-manager.git
-cd helwan-pkg-manager
-pip install -e .
+sudo pacman -S hpm
 ```
 
 This will make the `hpm` command globally available in your terminal.
@@ -39,15 +37,15 @@ This will make the `hpm` command globally available in your terminal.
 ### 📦 Install & Remove
 
 ```bash
-sudo hpm install firefox
-sudo hpm remove nano
+hpm instalar firefox
+hpm remove nano
 ```
 
 ### 🔄 Upgrade & Refresh
 
 ```bash
-sudo hpm upgrade         # Upgrade all installed packages
-sudo hpm refresh         # Sync databases + upgrade packages
+hpm upgrade         # Upgrade all installed packages
+hpm refresh         # Sync databases + upgrade packages
 ```
 
 ### 🔍 Search & Info
@@ -61,9 +59,9 @@ hpm list                 # List all installed packages
 ### 🧹 System Maintenance
 
 ```bash
-sudo hpm clean
+hpm clean
 hpm orphans list
-sudo hpm orphans remove
+hpm orphans remove
 ```
 
 ### 🌐 AUR Management
@@ -131,6 +129,7 @@ To build a `.zst` package for Arch:
 ## 📄 License
 
 MIT © Helwan Linux Team
+
 
 
 
