@@ -112,7 +112,9 @@ hpm doctor
 To run the app locally:
 
 ```bash
-python main.py --help
+hpm --help
+
+hpm --帮助
 ```
 
 To build a `.zst` package for Arch:
@@ -125,3 +127,4 @@ To build a `.zst` package for Arch:
 ## 📄 License
 
 MIT © Helwan Linux Team
+
