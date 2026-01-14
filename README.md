@@ -1,144 +1,126 @@
-# hpm – A Friendly Frontend for Pacman
+# 📦 Helwan Package Manager (HPM)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Arch%20Linux-blue.svg)](https://archlinux.org)
+### 🌐 اختر اللغة / Choose Language
+- [العربية](#arabic)
+- [English](#english)
+- [中文 (Chinese)](#chinese)
+- [Español (Spanish)](#spanish)
+- [🚀 Contributing](#contributing)
+---
 
-`hpm` is a user-friendly and minimal CLI frontend for `pacman`, designed for Arch Linux users and derivatives. It simplifies common package management tasks through readable and intuitive commands.
+<a name="arabic"></a>
+## 🇪🇬 النسخة العربية (Arabic)
+
+هذا هو مدير الحزم الرسمي لتوزيعة "حلوان لينكس"، يدعم تنفيذ أوامر متعددة في سطر واحد.
+
+| المهمة | الأمر | الاختصار | مثال |
+| :--- | :--- | :--- | :--- |
+| تثبيت حزمة | `تثبيت` | - | `hpm تثبيت firefox` |
+| إزالة حزمة | `إزالة` | - | `hpm إزالة vlc` |
+| ترقية النظام | `ترقية` | - | `hpm ترقية` |
+| تحديث المستودعات | `تحديث` | - | `hpm تحديث` |
+| بحث عن حزمة | `بحث` | - | `hpm بحث chrome` |
+| معلومات الحزمة | `معلومات` | - | `hpm معلومات vlc` |
+| قائمة المثبت | `قائمة` | - | `hpm قائمة` |
+| تنظيف النظام | `تنظيف` | - | `hpm تنظيف` |
+| حزم يتيمة | `يتيم` | - | `hpm يتيم` |
+| مستودع AUR | `aur` | - | `hpm aur google-chrome` |
+| فحص النظام | `فحص` | - | `hpm فحص` |
+| سجل الأوامر | `سجل` | - | `hpm سجل` |
+| المساعدة | `--مساعدة` | - | `hpm --مساعدة` |
+
+**💡 أمثلة التشغيل:**
+- **أمر عادي:** `hpm تثبيت vlc`
+- **أمر مجمع:** `hpm تحديث ثم ترقية ثم تنظيف ثم فحص`
 
 ---
 
-##  Demo Video
+<a name="english"></a>
+## 🇺🇸 English Version
 
-[![Watch the demo](https://img.youtube.com/vi/Gn3lZLoF84s/0.jpg)](https://www.youtube.com/watch?v=Gn3lZLoF84s)
+| Function | Command | Shortcut | Example |
+| :--- | :--- | :--- | :--- |
+| Install | `install` | `i` | `hpm i firefox` |
+| Remove | `remove` | `r` | `hpm r vlc` |
+| Upgrade | `upgrade` | `u` | `hpm u` |
+| Refresh | `refresh` | `s` | `hpm s` |
+| Search | `search` | `q` | `hpm q chrome` |
+| Info | `info` | `I` | `hpm I vlc` |
+| List | `list` | `l` | `hpm l` |
+| Clean | `clean` | `c` | `hpm c` |
+| Orphans | `orphans` | `o` | `hpm o` |
+| AUR Support | `aur` | `a` | `hpm a google-chrome` |
+| Doctor | `doctor` | `d` | `hpm d` |
+| History | `history` | `h` | `hpm h` |
+| Help | `--help` | - | `hpm --help` |
 
-
-
-
-## 🚀 Features
-
-* 📦 Simple commands: `install`, `remove`, `upgrade`, etc.
-* 🧹 System maintenance tools: cache cleaning and orphan management
-* 🔍 Package search and info display
-* 📜 Command history tracking
-* 🌐 AUR support via `yay`
-* 🩺 Full system health check (`doctor` command)
-* 🧪 Dry-run mode (`--dry-run`) for safe testing
-* 📁 Written in Python using `Typer` and `Rich`
-
----
-
-## 🛠️ Installation
-
-### From Source
-
-```bash
-sudo pacman -S hpm
-```
-
-This will make the `hpm` command globally available in your terminal.
+**💡 Examples:**
+- **Basic Command:** `hpm i vlc`
+- **Chained Command:** `hpm s then u then c then d`
 
 ---
 
-## 📚 Usage
+<a name="chinese"></a>
+## 🇨🇳 中文版 (Chinese)
 
-### 📦 Install & Remove
+| 任务 | 命令 | 例子 |
+| :--- | :--- | :--- |
+| 安装 | `安装` | `hpm 安装 firefox` |
+| 卸载 | `卸载` | `hpm 卸载 vlc` |
+| 升级 | `升级` | `hpm 升级` |
+| 刷新 | `刷新` | `hpm 刷新` |
+| 搜索 | `搜索` | `hpm 搜索 chrome` |
+| 信息 | `信息` | `hpm 信息 vlc` |
+| 列表 | `列表` | `hpm 列表` |
+| 清理 | `清理` | `hpm 清理` |
+| 孤儿包 | `孤儿` | `hpm 孤儿` |
+| AUR 支持 | `aur` | `hpm aur google-chrome` |
+| 诊断 | `诊断` | `hpm 诊断` |
+| 历史 | `历史` | `hpm 历史` |
+| 帮助 | `--帮助` | `hpm --帮助` |
 
-```bash
-hpm instalar firefox
-hpm remove nano
-```
-
-### 🔄 Upgrade & Refresh
-
-```bash
-hpm upgrade         # Upgrade all installed packages
-hpm refresh         # Sync databases + upgrade packages
-```
-
-### 🔍 Search & Info
-
-```bash
-hpm search terminal      # Search packages
-hpm info htop            # Show detailed info
-hpm list                 # List all installed packages
-```
-
-### 🧹 System Maintenance
-
-```bash
-hpm clean
-hpm orphans list
-hpm orphans remove
-```
-
-### 🌐 AUR Management
-
-```bash
-hpm aur install visual-studio-code-bin
-```
-
-### 🩺 System Health Check
-
-```bash
-hpm doctor
-```
+**💡 例子:**
+- **基本命令:** `hpm 安装 vlc`
+- **链式命令:** `hpm 刷新 然后 升级 然后 清理`
 
 ---
 
-## 🧩 Global Options
+<a name="spanish"></a>
+## 🇪🇸 Versión Española (Spanish)
 
-* `--dry-run`, `-d`: Simulate actions without applying changes
-* `--force`, `-f`: Skip confirmation prompts (for install/remove/upgrade)
+| Función | Comando | Ejemplo |
+| :--- | :--- | :--- |
+| Instalar | `instalar` | `hpm instalar firefox` |
+| Eliminar | `eliminar` | `hpm eliminar vlc` |
+| Actualizar | `actualizar` | `hpm actualizar` |
+| Sincronizar | `sincronizar` | `hpm sincronizar` |
+| Buscar | `buscar` | `hpm buscar chrome` |
+| Información | `informacion` | `hpm informacion vlc` |
+| Lista | `lista` | `hpm lista` |
+| Limpiar | `limpiar` | `hpm limpiar` |
+| Huérfanos | `huerfanos` | `hpm huerfanos` |
+| Soporte AUR | `aur` | `hpm aur google-chrome` |
+| Diagnóstico | `diagnostico` | `hpm diagnostico` |
+| Historial | `historial` | `hpm historial` |
+| Ayuda | `--ayuda` | `hpm --ayuda` |
 
----
-
-## 📖 Command Table (Multi-language)
-
-| Command (English) | Shortcut | Command (Arabic) | Command (Spanish) | Command (Chinese) |
-| ----------------- | -------- | ---------------- | ----------------- | ----------------- |
-| install           | i        | تثبيت            | instalar          | 安装                |
-| remove            | r        | إزالة            | eliminar          | 卸载                |
-| upgrade           | u        | ترقية            | actualizar        | 升级                |
-| refresh           | s        | تحديث            | sincronizar       | 刷新                |
-| search            | q        | بحث              | buscar            | 搜索                |
-| info              | I        | معلومات          | informacion       | 信息                |
-| list              | l        | قائمة            | lista             | 列表                |
-| clean             | c        | تنظيف            | limpiar           | 清理                |
-| orphans           | o        | يتيم             | huerfanos         | 孤儿                |
-| aur               | a        | aur              | aur               | AUR               |
-| doctor            | d        | فحص              | diagnostico       | 诊断                |
-| history           | h        | سجل              | historial         | 历史                |
-| --help            | —        | --مساعدة         | --ayuda           | --帮助              |
+**💡 Ejemplos:**
+- **Comando Básico:** `hpm instalar vlc`
+- **Comando Combinado:** `hpm sincronizar luego actualizar luego limpiar`
 
 ---
 
-## 🧪 Development
+<a name="contributing"></a>
+## 🚀 Contributing to Helwan Linux
 
-To run the app locally:
+We welcome contributions from developers worldwide! Whether you want to add a new language, optimize the code, or fix a bug, here is how you can help:
 
-```bash
-hpm --help
+1. **Fork the Repository**: Create your own copy of the project.
+2. **Create a Branch**: `git checkout -b feature/NewFeature`.
+3. **Commit Changes**: Use descriptive messages like `Add French language support`.
+4. **Submit a Pull Request**: Explain your changes and wait for review.
 
-hpm --帮助
-
-hpm eliminar [pkg-name]
-
-hpm سجل
-```
-
-To build a `.zst` package for Arch:
-
-* Add a valid `PKGBUILD`
-* Use `makepkg`
+### 🌐 Internationalization (i18n)
+If you wish to add a new language to **HPM**, please check the `constants.py` file and add the corresponding translations for all commands.
 
 ---
-
-## 📄 License
-
-MIT © Helwan Linux Team
-
-
-
-
-
-
