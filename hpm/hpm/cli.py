@@ -34,11 +34,28 @@ def print_custom_help(lang: str):
     """Prints a custom help message in the specified language."""
     translate = get_translation(lang)
     console.print(f"[bold green]{translate('description')}[/bold green]")
-    console.print("[dim]Version: 1.0.0[/dim]")
+    console.print("[dim]Version: 1.1.0 (Chained Commands Support)[/dim]")
     console.print(f"\n[bold]{translate('usage')}:[/b] hpm [COMMAND] [OPTIONS] [ARGS]...")
 
+    # قسم شرح ميزة الربط
+    chain_title = translate('chaining_title')
+    console.print(f"\n[bold magenta]🔗 {chain_title}:[/bold magenta]")
+    
+    if lang == "ar":
+        console.print("  يمكنك تشغيل عدة أوامر معاً باستخدام الرابط [bold cyan]'ثم'[/bold cyan]")
+        console.print("  [dim]مثال: hpm تحديث ثم فحص ثم تنظيف[/dim]")
+    elif lang == "es":
+        console.print("  Puedes ejecutar varios comandos usando [bold cyan]'luego'[/bold cyan]")
+        console.print("  [dim]Ejemplo: hpm actualizar luego diagnostico[/dim]")
+    elif lang == "zh":
+        console.print("  你可以使用 [bold cyan]'然后'[/bold cyan] 同时运行多个命令")
+        console.print("  [dim]例子: hpm 刷新 然后 诊断 然后 清理[/dim]")
+    else:
+        console.print("  You can run multiple commands using [bold cyan]'then'[/bold cyan]")
+        console.print("  [dim]Example: hpm refresh then doctor then clean[/dim]")
+
     table = Table(
-        title=translate("commands_title"),
+        title=f"\n{translate('commands_title')}",
         show_header=True,
         header_style="bold magenta",
         title_justify="left",
@@ -48,6 +65,8 @@ def print_custom_help(lang: str):
     table.add_column("Key Options", style="yellow", overflow="fold")
 
     commands = translate('commands')
+    
+    # صفوف الجدول كاملة كما في ملفك الأصلي
     table.add_row(f"{commands['install']['name']} ({'|'.join(commands['install']['aliases'])})", commands['install']['desc'], "**--local (-l) : Install from a local file.**\n--force (-f) : Bypass confirmations.")
     table.add_row(f"{commands['remove']['name']} ({'|'.join(commands['remove']['aliases'])})", commands['remove']['desc'], "--force (-f) : Bypass confirmations.")
     table.add_row(f"{commands['upgrade']['name']} ({'|'.join(commands['upgrade']['aliases'])})", commands['upgrade']['desc'], "--force (-f) : Bypass confirmations.")
@@ -62,34 +81,35 @@ def print_custom_help(lang: str):
     table.add_row(f"{commands['history']['name']} ({'|'.join(commands['history']['aliases'])})", commands['history']['desc'], "")
 
     console.print(table)
+    
+    # تحديد خيار المساعدة بناءً على اللغة لمنع التخلف
+    help_option = "--help"
+    if lang == "ar": help_option = "--مساعدة"
+    elif lang == "zh": help_option = "--帮助"
+    elif lang == "es": help_option = "--ayuda"
+
     console.print(f"\n[bold]{translate('global_options_title')}:[/b]")
     console.print(f"  [cyan]--dry-run, -d[/cyan] : {translate('dry_run_help')}")
-    console.print(f"  [cyan]--lang[/cyan] : {translate('lang_help')}")
-    console.print(f"  [cyan]--help[/cyan] : {translate('help_help')}")
+    #console.print(f"  [cyan]--lang[/cyan] : {translate('lang_help')}")
+    console.print(f"  [cyan]--version[/cyan] : Show version info")
+    console.print(f"  [cyan]{help_option}[/cyan] : {translate('help_help')}")
 
 @app.callback(invoke_without_command=True)
 def main_callback(
     ctx: typer.Context,
-    dry_run: Annotated[
-        bool,
-        typer.Option(
-            "--dry-run",
-            "-d",
-            help="Show what would be done without making any changes."
-        ),
-    ] = False,
-    lang: Annotated[
-        Optional[str],
-        typer.Option(
-            "--lang",
-            help="Set the interface language (en, zh, es, ar)."
-        ),
-    ] = None,
+    version: Annotated[bool, typer.Option("--version", help="Show version")] = False,
+    dry_run: Annotated[bool, typer.Option("--dry-run", "-d", help="Show what would be done")] = False,
+    lang: Annotated[Optional[str], typer.Option("--lang", help="Set language")] = None,
 ):
     global current_lang
     if lang and lang in LANGUAGES:
         current_lang = lang
     
+    if version:
+        console.print("[bold cyan]HPM Version: 1.1.0[/bold cyan]")
+        console.print("[dim]Chained Commands & Multi-language Support Enabled.[/dim]")
+        raise typer.Exit()
+
     ctx.obj = {"dry_run": dry_run, "lang": current_lang}
     print_banner()
 
@@ -101,7 +121,6 @@ def main_callback(
         print_custom_help(current_lang)
         raise typer.Exit()
 
-# --- تعريف الأوامر بدون aliases
 @app.command(name="install", help="Installs one or more packages.")
 @app.command(name="i", help="Installs one or more packages.")
 def install_command(

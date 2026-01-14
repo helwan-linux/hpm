@@ -1,7 +1,7 @@
 # hpm/utils/early_args_patch.py
 
 import sys
-from typing import Dict
+from typing import Dict, List
 
 HELP_ALIASES: Dict[str, str] = {
     "--ayuda": "es",
@@ -10,6 +10,14 @@ HELP_ALIASES: Dict[str, str] = {
     "--lang": "en",
     "-h": "en",
     "--help": "en"
+}
+
+# القاموس الجديد لروابط الأوامر المتعددة
+CHAIN_CONNECTORS: Dict[str, List[str]] = {
+    "ar": ["ثم"],
+    "en": ["then"],
+    "es": ["luego"],
+    "zh": ["然后"]
 }
 
 COMMAND_ALIASES: Dict[str, str] = {
@@ -59,15 +67,21 @@ COMMAND_ALIASES: Dict[str, str] = {
 
 def patch_args():
     """
-    Patches command-line arguments to handle localized commands and help flags.
+    Patches command-line arguments to handle localized commands, help flags, and command chaining.
     Returns the detected language code or None.
     """
     detected_lang = None
     new_args = []
     
+    # تجميع كل كلمات الربط من كل اللغات للتحقق منها
+    all_connectors = []
+    for connectors in CHAIN_CONNECTORS.values():
+        all_connectors.extend(connectors)
+
     for arg in sys.argv[1:]:
         is_command = False
         
+        # 1. التحقق من الاختصارات والأوامر المترجمة (كودك الأصلي)
         for lang_code, aliases in COMMAND_ALIASES.items():
             if arg in aliases:
                 new_args.append(aliases[arg])
@@ -75,11 +89,19 @@ def patch_args():
                 is_command = True
                 break
         
-        if arg in HELP_ALIASES:
+        # 2. التحقق من أعلام المساعدة (كودك الأصلي)
+        if not is_command and arg in HELP_ALIASES:
             new_args.append("--help")
             detected_lang = HELP_ALIASES[arg]
             is_command = True
 
+        # 3. التحقق من كلمات الربط (الإضافة الجديدة)
+        # نترك كلمة الربط كما هي ليتم معالجتها في main.py لاحقاً
+        if not is_command and arg in all_connectors:
+            new_args.append(arg)
+            is_command = True
+
+        # 4. إذا لم يكن أي مما سبق، أضفه كما هو
         if not is_command:
             new_args.append(arg)
 

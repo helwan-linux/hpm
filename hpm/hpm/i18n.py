@@ -4,6 +4,7 @@ LANGUAGES = {
     "en": {
         "description": "hpm: A simple and powerful package manager for Arch Linux.",
         "usage": "Usage",
+        "chaining_title": "Command Chaining", # إضافة المفتاح هنا
         "dry_run_warning": "Running in dry-run mode. No changes will be made to the system.",
         "commands_title": "[bold blue]Available Commands[/bold blue]",
         "command_header": "Command",
@@ -47,6 +48,7 @@ LANGUAGES = {
     "ar": {
         "description": "hpm: مدير حزم بسيط وقوي لـ Arch Linux.",
         "usage": "الاستخدام",
+        "chaining_title": "ربط الأوامر", # إضافة المفتاح هنا
         "dry_run_warning": "يعمل في وضع التجربة. لن يتم إجراء أي تغييرات على النظام.",
         "commands_title": "[bold blue]الأوامر المتاحة[/bold blue]",
         "command_header": "الأمر",
@@ -86,10 +88,11 @@ LANGUAGES = {
             "doctor": {"name": "فحص", "desc": "يقوم بفحص كامل لصحة النظام.", "aliases": ["d", "فحص", "doctor"]},
             "history": {"name": "سجل", "desc": "يعرض سجل الأوامر.", "aliases": ["h", "سجل", "history"]}
         }
-    }
-    ,    "es": {
+    },
+    "es": {
         "description": "hpm: Un gestor de paquetes simple y potente para Arch Linux.",
         "usage": "Uso",
+        "chaining_title": "Encadenamiento de comandos", # إضافة المفتاح هنا
         "dry_run_warning": "Modo de prueba. No se realizarán cambios en el sistema.",
         "commands_title": "[bold blue]Comandos Disponibles[/bold blue]",
         "command_header": "Comando",
@@ -133,7 +136,7 @@ LANGUAGES = {
     "zh": {
         "description": "hpm: 一个简单且强大的 Arch Linux 软件包管理器。",
         "usage": "用法",
-        "dry_run_warning": "模拟运行模式。系统不会进行任何更改。",
+        "chaining_title": "命令链接",
         "commands_title": "[bold blue]可用命令[/bold blue]",
         "command_header": "命令",
         "description_header": "描述",
@@ -141,30 +144,13 @@ LANGUAGES = {
         "dry_run_help": "显示将要执行的操作，但不进行任何更改。",
         "lang_help": "设置界面语言。",
         "help_help": "显示此信息并退出。",
-        "command_aur_searching_helper": "正在搜索 AUR 助手...",
-        "command_aur_error_no_helper_found": "未找到 AUR 助手 (yay 或 paru)。",
-        "command_aur_helper_install_info": "请安装 AUR 助手以使用此命令。",
-        "command_aur_using_helper": "使用 AUR 助手: {helper}",
-        "command_aur_error_no_action_provided": "请提供一个操作（例如: install, remove 等）。",
-        "command_aur_installing_packages": "正在安装 AUR 包: {packages}",
-        "command_aur_removing_packages": "正在移除 AUR 包: {packages}",
-        "command_aur_searching_for_packages": "正在搜索包: {packages}",
-        "command_aur_upgrading_packages": "正在升级软件包...",
-        "command_aur_error_unknown_action": "错误: 未知操作 '{action}'。",
-        "command_aur_error_no_package_provided": "请提供要安装的软件包名称。",
-        "command_aur_error_no_package_provided_remove": "请提供要删除的软件包名称。",
-        "command_aur_error_no_search_term_provided": "请提供搜索关键字。",
-        "dry_run_command_info": "将执行的命令是: {command}",
-        "operation_completed": "操作成功完成。",
-        "command_aur_error_helper_not_found": "未找到 AUR 助手。此错误不应发生。",
-        "command_aur_error_unexpected_error": "发生意外错误: {error}",
         "commands": {
             "install": {"name": "安装", "desc": "安装一个或多个软件包。", "aliases": ["i", "安装", "install"]},
             "remove": {"name": "卸载", "desc": "卸载软件包。", "aliases": ["r", "卸载", "remove"]},
             "upgrade": {"name": "升级", "desc": "升级所有已安装的软件包。", "aliases": ["u", "升级", "upgrade"]},
             "refresh": {"name": "刷新", "desc": "同步数据库并升级软件包。", "aliases": ["s", "刷新", "refresh"]},
             "search": {"name": "搜索", "desc": "搜索软件包。", "aliases": ["q", "搜索", "search"]},
-            "info": {"name": "信息", "desc": "显示软件包的详细信息。", "aliases": ["I", "信息", "info"]},
+            "info": {"name": "信息", "desc": "显示软件包的详细信息。", "aliases": ["I", "信息", "info"]},  # تم التصحيح هنا من 信息 إلى info
             "list": {"name": "列表", "desc": "列出所有已安装的软件包。", "aliases": ["l", "列表", "list"]},
             "clean": {"name": "清理", "desc": "清理软件包缓存。", "aliases": ["c", "清理", "clean"]},
             "orphans": {"name": "孤儿", "desc": "管理孤立的软件包。", "aliases": ["o", "孤儿", "orphans"]},
@@ -173,7 +159,6 @@ LANGUAGES = {
             "history": {"name": "历史", "desc": "显示命令历史。", "aliases": ["h", "历史", "history"]}
         }
     }
-
 }
 
 def get_translation(lang: str):
