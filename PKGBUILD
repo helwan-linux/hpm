@@ -1,6 +1,6 @@
 # Maintainer: Saeed Badreldeen <your-email@example.com>
 pkgname=hpm
-pkgver=1.0.0
+pkgver=1.1.0
 pkgrel=1
 pkgdesc="Helwan Package Manager - a simple package manager frontend for Arch Linux."
 arch=('x86_64')
