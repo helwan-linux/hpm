@@ -1,5 +1,20 @@
 # 📦 Helwan Package Manager (HPM)
 
+### HPM is a human-friendly package manager for Helwan Linux, built on top of pacman with natural-language command chaining.
+
+> **Note:** Each language supports its native **"then"** keyword for command chaining.
+
+### 📥 Installation
+
+```bash
+sudo pacman -S hpm
+
+
+OR
+
+```bash
+yay -S hpm
+---
 ### 🌐 اختر اللغة / Choose Language
 - [العربية](#arabic)
 - [English](#english)
