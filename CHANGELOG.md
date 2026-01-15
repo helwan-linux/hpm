@@ -14,5 +14,5 @@
 - **User Guide:** Completed the first comprehensive manual for end-users.
 
 ### ⚡ New Feature: Command Chaining (then)
-- **Sequential Execution:** Added full support for linking multiple commands using the "then" keyword (e.g., `hpm sync then update`).
+- **Sequential Execution:** Added full support for linking multiple commands using the "then" keyword (e.g., `hpm update then doctor`).
 - **Smart Logic:** The engine now ensures that chained commands are executed in the correct logical order to prevent build errors.
