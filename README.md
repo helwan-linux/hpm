@@ -8,11 +8,7 @@
 
 ```bash
 sudo pacman -S hpm
-
-
 OR
-
-```bash
 yay -S hpm
 ---
 ### 🌐 اختر اللغة / Choose Language
@@ -139,3 +135,4 @@ We welcome contributions from developers worldwide! Whether you want to add a ne
 If you wish to add a new language to **HPM**, please check the `constants.py` file and add the corresponding translations for all commands.
 
 ---
+
