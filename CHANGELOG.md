@@ -13,6 +13,6 @@
 - **Verbose Output:** Added detailed logging for troubleshooting failed builds.
 - **User Guide:** Completed the first comprehensive manual for end-users.
 
-### ⚡ New Feature: Command Bundling
-- **Streamlined Flags:** Support for grouped operations (e.g., `-si`, `-syu`).
-- **Smart Logic:** The engine now parses multiple flags simultaneously to execute sequential tasks (Sync + Update + Install) in a single execution line.
+### ⚡ New Feature: Command Chaining (then)
+- **Sequential Execution:** Added full support for linking multiple commands using the "then" keyword (e.g., `hpm sync then update`).
+- **Smart Logic:** The engine now ensures that chained commands are executed in the correct logical order to prevent build errors.
