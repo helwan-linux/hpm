@@ -1,4 +1,4 @@
-# Maintainer: Saeed Badreldeen <your-email@example.com>
+# Maintainer: Saeed Badreldeen <helwanlinux@gmail.com>
 pkgname=hpm
 pkgver=1.1.0
 pkgrel=1
