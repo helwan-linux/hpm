@@ -6,11 +6,12 @@
 
 ### 📥 Installation
 
+** ON Helwan Linux :** 
 ```bash
 sudo pacman -S hpm
 ```
 
-**OR**
+**any otherdistro**
 
 ```bash
 yay -S hpm
@@ -154,3 +155,4 @@ We welcome contributions from developers worldwide! Whether you want to add a ne
 If you wish to add a new language to **HPM**, please check the `constants.py` file and add the corresponding translations for all commands.
 
 ---
+
