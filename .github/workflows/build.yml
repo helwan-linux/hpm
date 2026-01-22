@@ -1,0 +1,39 @@
+name: Build HPM Binary
+
+on:
+  push:
+    branches: [ main ] # سيعمل الأكشن عند الرفع على فرع main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libfuse2 patchelf # متطلبات Nuitka و Onefile
+          pip install -r requirements.txt
+          pip install nuitka
+
+      - name: Build Binary with Nuitka
+        run: |
+          python -m nuitka --standalone \
+                           --onefile \
+                           --enable-plugin=pyqt5 \
+                           --output-dir=build \
+                           main.py
+
+      - name: Upload Binary Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: hpm-linux-binary
+          path: build/main.bin
