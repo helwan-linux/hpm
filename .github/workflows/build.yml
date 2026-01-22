@@ -10,10 +10,10 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4 # تحديث لـ v4
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v5 # تحديث لـ v5
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
@@ -21,26 +21,20 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libfuse2 patchelf
-          # التأكد من المسار قبل التثبيت لتجنب خطأ No such file or directory
-          if [ -f requirements.txt ]; then
-            pip install -r requirements.txt
-          else
-            echo "requirements.txt not found in root, searching..."
-            find . -name requirements.txt -exec pip install -r {} +
-          fi
-          pip install nuitka
+          # تثبيت المكتبات بأسماء pip الصحيحة مباشرة لتجنب أخطاء التسمية في النظام
+          pip install typer rich typing-extensions nuitka
+          # تثبيت المتطلبات الأخرى إذا وُجد الملف في أي مكان
+          find . -name "requirements.txt" -exec pip install -r {} + || true
 
       - name: Build Binary with Nuitka
         run: |
-          # استخدام python -m nuitka لضمان عملها من البيئة الحالية
           python -m nuitka --standalone \
                            --onefile \
-                           --enable-plugin=pyqt5 \
                            --output-dir=dist \
                            main.py
 
       - name: Upload Binary Artifact
-        uses: actions/upload-artifact@v4 # التحديث المطلوب لحل خطأ v3 القديم
+        uses: actions/upload-artifact@v4
         with:
           name: hpm-linux-binary
-          path: dist/*.bin # رفع أي ملف تنفيذي ناتج في مجلد dist
+          path: dist/main.bin
