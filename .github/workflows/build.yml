@@ -21,13 +21,16 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libfuse2 patchelf
-          # تثبيت المكتبات بأسماء pip الصحيحة مباشرة لتجنب أخطاء التسمية في النظام
           pip install typer rich typing-extensions nuitka
-          # تثبيت المتطلبات الأخرى إذا وُجد الملف في أي مكان
+          # تثبيت المتطلبات من أي مكان توجد فيه
           find . -name "requirements.txt" -exec pip install -r {} + || true
 
       - name: Build Binary with Nuitka
         run: |
+          # البحث عن ملف main.py وتشغيل Nuitka من موقعه
+          MAIN_PATH=$(find . -name "main.py" | head -n 1)
+          MAIN_DIR=$(dirname "$MAIN_PATH")
+          cd "$MAIN_DIR"
           python -m nuitka --standalone \
                            --onefile \
                            --output-dir=dist \
@@ -37,4 +40,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: hpm-linux-binary
-          path: dist/main.bin
+          path: "**/dist/*.bin"
