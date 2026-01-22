@@ -10,17 +10,17 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4 # تحديث من v3 إلى v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5 # تحديث من v4 إلى v5 لدعم أفضل
         with:
           python-version: '3.10'
 
       - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libfuse2 patchelf # متطلبات Nuitka و Onefile
+          sudo apt-get install -y libfuse2 patchelf
           pip install -r requirements.txt
           pip install nuitka
 
@@ -29,11 +29,11 @@ jobs:
           python -m nuitka --standalone \
                            --onefile \
                            --enable-plugin=pyqt5 \
-                           --output-dir=build \
+                           --output-dir=dist \
                            main.py
 
       - name: Upload Binary Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4 # الحل الأساسي: التحديث من v3 إلى v4
         with:
           name: hpm-linux-binary
-          path: build/main.bin
+          path: dist/main.dist/main.bin # تأكد من أن Nuitka يخرج الملف في هذا المسار أو عدله لـ dist/main.bin
